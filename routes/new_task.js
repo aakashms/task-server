@@ -3,6 +3,9 @@ const insertTask = require('../controllers/InsertTask');
 const route = express.Router();
 const tasks = require('../models/Task')
 
+
+
+/*  Creating a new task */
 route.post('/newtask', async(req,res)=>{
     try{
     const {title,description, due} = await req.body;
@@ -14,6 +17,7 @@ route.post('/newtask', async(req,res)=>{
     }
 })
 
+/*  Retrieving all tasks  */
 route.get('/tasklist', async(req,res)=>{
     try{
         const tasklist = await tasks.find()
@@ -26,6 +30,7 @@ route.get('/tasklist', async(req,res)=>{
     
 })
 
+/* Retrieving a single task by its ID  */
 route.get('/tasklist/:id', async(req,res)=>{
     try{
         const id = req.params.id
@@ -39,6 +44,8 @@ route.get('/tasklist/:id', async(req,res)=>{
     }
 })
 
+
+/* Updating an existing task  */
 route.put('/task/:id', async(req,res)=>{
     try{
         const id = req.params.id
@@ -52,6 +59,7 @@ route.put('/task/:id', async(req,res)=>{
     }
 })
 
+/* Deleting a task  */
 route.delete('/task/:id', async(req,res)=>{
     try{
         const id = req.params.id
